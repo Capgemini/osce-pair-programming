@@ -1,10 +1,10 @@
-package io.github.capgemini.oscepairprogramming;
+package com.capgemini.prices;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-public class OscePairProgrammingApplicationTest {
+public class PriceApplicationTest {
 
   @Test
   void contextLoads() {}

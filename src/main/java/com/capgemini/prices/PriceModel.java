@@ -1,4 +1,4 @@
-package io.github.capgemini.oscepairprogramming.controller;
+package com.capgemini.prices;
 
 import java.util.Date;
 

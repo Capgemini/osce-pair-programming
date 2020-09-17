@@ -1,4 +1,4 @@
-package io.github.capgemini.oscepairprogramming.util;
+package com.capgemini.prices;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;

@@ -1,6 +1,5 @@
-package io.github.capgemini.oscepairprogramming.controller;
+package com.capgemini.prices;
 
-import io.github.capgemini.oscepairprogramming.util.PriceUtils;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;

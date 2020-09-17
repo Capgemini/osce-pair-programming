@@ -1,12 +1,12 @@
-package io.github.capgemini.oscepairprogramming;
+package com.capgemini.prices;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class OscePairProgrammingApplication {
+public class PriceApplication {
 
   public static void main(String[] args) {
-    SpringApplication.run(OscePairProgrammingApplication.class, args);
+    SpringApplication.run(PriceApplication.class, args);
   }
 }

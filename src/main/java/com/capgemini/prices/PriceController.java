@@ -1,6 +1,5 @@
-package io.github.capgemini.oscepairprogramming.controller;
+package com.capgemini.prices;
 
-import io.github.capgemini.oscepairprogramming.util.PriceUtils;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PathVariable;

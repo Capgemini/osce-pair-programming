@@ -1,13 +1,15 @@
 # osce-pair-programming
 
-This Spring Boot application that retrieves a price for a date.
+Spring Boot application that retrieves a price for a date.
 
 - `GET /price` retrieve price for current date
 - `GET /price/{date}` retrieve price for a given date (format yyyy-mm-dd)
 
-The service originally only had `GET /price/{date}` but recently `GET /price` was added.
+The service originally only had `GET /price/{date}` but recently `GET /price` was also added.
 
-You have been employed by the client to make some new changes to this service.
+The service was written by a external consultant who parted on bad terms. 
+
+You have been employed by the client to alter some business logic and to advise on any improvements that could be made to the code.
 
 ### Requirement 1
 
@@ -31,3 +33,7 @@ Whilst the code is being looked at to add new prices the client has asked you to
 ### Requirement 4
 
 The client has asked you to provide feedback on the maintainability of the current code as they may be able to secure funding for any refactoring that might be beneficial. 
+
+They're particularly keen to know about:
+- the quality of the code; the company is disputing the cost of the initial service development and would like to know what code quality issues they can use to aid their case.
+- how they could make simple changes to the service in future without development costs
