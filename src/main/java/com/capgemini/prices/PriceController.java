@@ -52,8 +52,6 @@ public class PriceController {
 
   /**
    * 2020-08-19 JIRA-112 new requirement to get price for the current date added
-   *
-   * @return
    */
   @RequestMapping(path = "/price", produces = "application/json")
   public ResponseEntity<?> getPriceForCurrentDate() {
