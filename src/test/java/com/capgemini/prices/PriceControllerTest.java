@@ -11,20 +11,21 @@ public class PriceControllerTest {
 
     PriceController controller = new PriceController();
 
-    // check date within 2020-05-02,2020-08-31,1.13 is 1.13 * commission
+    // rate entry line for this test date is '2020-05-02,2020-08-31,1.13'
     double expected = 1.13 * 0.09;
-    assertEquals(controller.getPriceOnDate("2020-07-12").getBody(), expected);
+    assertEquals(expected, controller.getPriceOnDate("2020-07-12").getBody());
   }
 
-  // 2020-08-19 JIRA-112 test new requirement to get price for the current date added
+  // 2020-08-19 JIRA-112 test new requirement to get price for the current date
+  // rate was 1.15 on 2020-08-19
+  // commission was 0.09 on 2020-08-19
+  // 1.15 * 0.09 = 0.1035
   @Test
   public void testGetPriceForCurrentDate() throws Exception {
 
     PriceController controller = new PriceController();
 
-    // rate was 1.15 on 2020-08-19 * commission
-    double expected = 1.15 * 0.09;
-    assertEquals(controller.getPriceForCurrentDate().getBody(), expected);
+    assertEquals(0.1035, controller.getPriceForCurrentDate().getBody());
   }
 
   @Test
@@ -32,14 +33,15 @@ public class PriceControllerTest {
 
     PriceController controller = new PriceController();
 
+    // use testPrices file instead of application data so price data remains static
     controller.loadPrices("testPrices.csv");
 
-    // TODO: 2020-08-19 JIRA-112 this breaks, fix one day
-    // assertEquals(controller.findPrice(new
-    // PriceUtils().getDateFromString("1990-05-12")).getPrice(), 0.91);
+    // TODO: this has never worked, fix one day (0.91 is correct so unsure why)
+    // assertEquals(0.91, controller.findPrice(new
+    // PriceUtils().getDateFromString("1990-05-12")).getPrice());
     assertEquals(
-        controller.findPrice(new PriceUtils().getDateFromString("1991-05-12")).getPrice(), 0.9);
+        0.9, controller.findPrice(new PriceUtils().getDateFromString("1991-05-12")).getPrice());
     assertEquals(
-        controller.findPrice(new PriceUtils().getDateFromString("1993-03-12")).getPrice(), 0.92);
+        0.92, controller.findPrice(new PriceUtils().getDateFromString("1993-03-12")).getPrice());
   }
 }

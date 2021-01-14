@@ -1,19 +1,18 @@
 # osce-pair-programming
 
-Spring Boot application that retrieves a price for a date.
+Spring Boot application that retrieves a price (a rate multiplied by a commission amount) for a date.
 
+Endpoints available are:
 - `GET /price` retrieve price for current date
 - `GET /price/{date}` retrieve price for a given date (format yyyy-mm-dd)
 
-The service originally only had `GET /price/{date}` but recently `GET /price` was also added.
-
-The service was written by a external consultant who parted on bad terms. 
-
 You have been employed by the client to alter some business logic and to advise on any improvements that could be made to the code.
+
+**Note**; the commission rate (0.09) has never changed since the application was introduced.
 
 ### Requirement 1
 
-The client has asked for the following rate change to be added to the service:
+The client has asked for the following rate change to be made to the service:
 
 - From date: 2020-07-01
 - To date: 2099-12-31
@@ -23,7 +22,7 @@ They've asked that appropriate tests are added to ensure the new rate entries ar
 
 ### Requirement 2
 
-In order to get the JIRA-112 changes live quickly a assertion in `testFindPriceMethod` had to be commented out. Uncomment the line and see why it might be failing. If you can't fix comment out again.
+`testFindPriceMethod` contains a TODO comment for a test assertion that has never passed. Uncomment the assertion to see if you can find out why.
 
 ### Requirement 3
 

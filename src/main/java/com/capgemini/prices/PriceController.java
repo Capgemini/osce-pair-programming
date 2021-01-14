@@ -66,7 +66,9 @@ public class PriceController {
       }
     }
 
-    PriceModel priceModel = findPrice(new Date());
+    Date currentDate = new Date();
+    System.out.println("DEBUG>>> 'getPriceForCurrentDate' called for: " + currentDate);
+    PriceModel priceModel = findPrice(currentDate);
 
     if (priceModel == null) return ResponseEntity.notFound().build();
 
