@@ -1,6 +1,6 @@
 # osce-pair-programming
 
-Spring Boot application that retrieves a price (a rate multiplied by a commission amount) for a date.
+Spring Boot application that retrieves a price (which is a rate multiplied by a fixed commission percentage) for a date.
 
 Endpoints available are:
 - `GET /price` retrieve price for current date
@@ -8,7 +8,7 @@ Endpoints available are:
 
 You have been employed by the client to alter some business logic and to advise on any improvements that could be made to the code.
 
-**Note**; the commission rate (0.09) has never changed since the application was introduced.
+**Note**; the commission percentage (9%) has never changed since the application was introduced.
 
 ### Requirement 1
 
@@ -18,7 +18,9 @@ The client has asked for the following rate change to be made to the service:
 - To date: 2099-12-31
 - Rate: 0.87
 
-They've asked that appropriate tests are added to ensure the new rate entries are correct. Any existing date entries will need to be adjusted to cater for this new entry.
+The commission percentage is to remain at 9%.
+
+They've asked that appropriate tests are added to ensure the new rate entries are correct.
 
 ### Requirement 2
 
@@ -26,8 +28,8 @@ They've asked that appropriate tests are added to ensure the new rate entries ar
 
 ### Requirement 3
 
-There have been complaints that the service occasionally gives the wrong price. No firm examples have been provided yet but this seems to happen most often at the end of the month.
-Whilst the code is being looked at to add new prices the client has asked you to see if you can replicate the issue and provide a fix.
+There have been complaints that the service occasionally fails, usually (but not always) at the end of a month. The last report of a failure was on the 31st July 2020.
+The client has asked you to see if you can replicate the issue and provide a fix.
 
 ### Requirement 4
 

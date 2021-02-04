@@ -2,13 +2,13 @@ package com.capgemini.prices;
 
 import java.util.Date;
 
-public class PriceModel {
+public class RateEntry {
 
   private Date startDate;
   private Date endDate;
   private double price;
 
-  public PriceModel(Date startDate, Date endDate, double price) {
+  public RateEntry(Date startDate, Date endDate, double price) {
     this.startDate = startDate;
     this.endDate = endDate;
     this.price = price;

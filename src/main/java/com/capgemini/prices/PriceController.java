@@ -16,36 +16,36 @@ import java.util.List;
 @RestController
 public class PriceController {
 
-  private PriceUtils priceUtils;
+  private Utils utils;
 
-  private List<PriceModel> prices;
+  private List<RateEntry> rateEntries;
 
   public PriceController() {
-    priceUtils = new PriceUtils();
+    utils = new Utils();
   }
 
   @RequestMapping(path = "/price/{date}", produces = "application/json")
   public ResponseEntity<?> getPriceOnDate(@PathVariable String date) {
 
-    if (prices == null) {
+    if (rateEntries == null) {
       System.out.println("DEBUG>>> 'getPriceOnDate method' LOADING PRICES");
       try {
-        loadPrices("prices.csv");
+        loadRateEntries("prices.csv");
       } catch (Exception e) {
         System.out.println("DEBUG>>> LOADING FAILED");
         return ResponseEntity.status(500).build();
       }
     }
 
-    Date dateForSearch = priceUtils.getDateFromString(date);
+    Date dateForSearch = utils.getDateFromString(date);
     if (dateForSearch == null) return ResponseEntity.badRequest().build();
 
-    PriceModel priceModel = findPrice(dateForSearch);
+    RateEntry rateEntry = findEntry(dateForSearch);
 
-    if (priceModel == null) return ResponseEntity.notFound().build();
+    if (rateEntry == null) return ResponseEntity.notFound().build();
 
     // add commission before returning
-    double price = priceModel.getPrice() * 0.09;
+    double price = rateEntry.getPrice() * 1.09;
 
     return ResponseEntity.ok(price);
   }
@@ -56,10 +56,10 @@ public class PriceController {
   @RequestMapping(path = "/price", produces = "application/json")
   public ResponseEntity<?> getPriceForCurrentDate() {
 
-    if (prices == null) {
+    if (rateEntries == null) {
       System.out.println("DEBUG>>> 'getPriceOnDate method' LOADING PRICES");
       try {
-        loadPrices("prices.csv");
+        loadRateEntries("prices.csv");
       } catch (Exception e) {
         System.out.println("DEBUG>>> LOADING FAILED");
         return ResponseEntity.status(500).build();
@@ -68,29 +68,29 @@ public class PriceController {
 
     Date currentDate = new Date();
     System.out.println("DEBUG>>> 'getPriceForCurrentDate' called for: " + currentDate);
-    PriceModel priceModel = findPrice(currentDate);
+    RateEntry rateEntry = findEntry(currentDate);
 
-    if (priceModel == null) return ResponseEntity.notFound().build();
+    if (rateEntry == null) return ResponseEntity.notFound().build();
 
     // add commission before returning
-    double price = priceModel.getPrice() * 0.09;
+    double price = rateEntry.getPrice() * 1.09;
 
     return ResponseEntity.ok(price);
   }
 
-  PriceModel findPrice(Date date) {
+  RateEntry findEntry(Date date) {
 
-    for (PriceModel p : prices) {
-      if (p.getStartDate().before(date) && p.getEndDate().after(date)) {
-        return p;
+    for (RateEntry r : rateEntries) {
+      if (r.getStartDate().before(date) && r.getEndDate().after(date)) {
+        return r;
       }
     }
 
     return null;
   }
 
-  void loadPrices(String filename) throws Exception {
-    prices = new ArrayList<>();
+  void loadRateEntries(String filename) throws Exception {
+    rateEntries = new ArrayList<>();
     File file = new ClassPathResource(filename).getFile();
     try (BufferedReader br = new BufferedReader(new FileReader(file))) {
       boolean headerLine = true;
@@ -100,14 +100,15 @@ public class PriceController {
           System.out.println("DEBUG>>> SKIPPING HEADER LINE");
           headerLine = false;
         } else {
-          String[] priceParts = line.split(",");
-          prices.add(
-              new PriceModel(
-                  priceUtils.getDateFromString(priceParts[0]),
-                  priceUtils.getDateFromString(priceParts[1]),
-                  Double.valueOf(priceParts[2])));
+          String[] rateEntrySplit = line.split(",");
+          rateEntries.add(
+              new RateEntry(
+                  utils.getDateFromString(rateEntrySplit[0]),
+                  utils.getDateFromString(rateEntrySplit[1]),
+                  Double.valueOf(rateEntrySplit[2])));
         }
       }
+      System.out.println("DEBUG>>> LOADED  "+rateEntries.size()+" RATE ENTRIES");
     }
   }
 }

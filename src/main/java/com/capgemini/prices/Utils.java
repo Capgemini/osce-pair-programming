@@ -3,7 +3,7 @@ package com.capgemini.prices;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-public class PriceUtils {
+public class Utils {
 
   public Date getDateFromString(String date) {
     System.out.println("DEBUG>>> CONVERTING DATE: " + date);
